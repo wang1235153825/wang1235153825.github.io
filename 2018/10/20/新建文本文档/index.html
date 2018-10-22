@@ -144,13 +144,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -159,6 +152,13 @@
                         
                         <li>
                             <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -224,56 +224,56 @@
 <blockquote>
 <p>执行顺序：from-&gt;where-&gt;group by-&gt;having-&gt;order by-&gt;select</p>
 </blockquote>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select <span class="built_in">..</span>. <span class="keyword">from</span> student where 条件<span class="built_in"> group </span>by 分组字段 having 条件 order by 排序字段</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ... from student where 条件 group by 分组字段 having 条件 order by 排序字段</span><br></pre></td></tr></table></figure>
 <h4><span id="112-distinct-子句">1.1.2  DISTINCT 子句:</span></h4>
 <p>在表中，可能会包含重复值。这并不成问题，不过，有时您也许希望仅仅列出不同（distinct）的值。</p>
 <p>关键词 DISTINCT 用于返回唯一不同的值。</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> 列名称 <span class="keyword">FROM</span> 表名称</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT 列名称 FROM 表名称</span><br></pre></td></tr></table></figure>
 <h4><span id="113-where-子句">1.1.3 WHERE 子句</span></h4>
 <p>如需有条件地从表中选取数据，可将 WHERE 子句添加到 SELECT 语句。</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名称 <span class="keyword">FROM</span> 表名称 <span class="keyword">WHERE</span> 列 运算符 值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名称 FROM 表名称 WHERE 列 运算符 值</span><br></pre></td></tr></table></figure>
 <h4><span id="114-and-amp-or-运算符">1.1.4 AND &amp; OR 运算符</span></h4>
 <p>AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。</p>
 <p>如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。</p>
 <p>如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名称 <span class="keyword">FROM</span> 表名称 <span class="keyword">WHERE</span> 列 运算符 值 <span class="keyword">AND</span>/<span class="keyword">OR</span> 列 运算符 值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名称 FROM 表名称 WHERE 列 运算符 值 AND/OR 列 运算符 值</span><br></pre></td></tr></table></figure>
 <h4><span id="115-order-by-语句">1.1.5 ORDER BY 语句</span></h4>
 <p>ORDER BY 语句用于根据指定的列对结果集进行排序。</p>
 <p>ORDER BY 语句默认按照升序对记录进行排序（ASE）。</p>
 <p>如果您希望按照降序对记录进行排序，可以使用 DESC 关键字。</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名称 <span class="keyword">FROM</span> 表名称 <span class="keyword">WHERE</span> 列 运算符 值 <span class="keyword">ORDER</span> <span class="keyword">BY</span> 列名 ASE/<span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名称 FROM 表名称 WHERE 列 运算符 值 ORDER BY 列名 ASE/DESC</span><br></pre></td></tr></table></figure>
 <h3><span id="12-数据定义语言ddl">1.2 数据定义语言DDL</span></h3>
 <blockquote>
 <p>关键词： create alter drop truncate(删除当前表再新建一个一模一样的表结构)</p>
 </blockquote>
 <h4><span id="121-create-语句">1.2.1 create  语句</span></h4>
 <p>CREATE语句用于创建数据库</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> 库名;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database 库名;</span><br></pre></td></tr></table></figure>
 <h4><span id="122-drop-语句">1.2.2 drop 语句</span></h4>
 <p>DROP语句用于删除数据库</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> 库名;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database 库名;</span><br></pre></td></tr></table></figure>
 <h4><span id="123-use-语句">1.2.3 use  语句</span></h4>
 <p>use语句用于切换数据库</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> 库名;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use 库名;</span><br></pre></td></tr></table></figure>
 <h4><span id="124-create-语句">1.2.4 create  语句</span></h4>
 <p>create语句用于创建表。</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create <span class="keyword">table</span> 表名(</span><br><span class="line"></span><br><span class="line">　　　　　　字段名 类型 约束,</span><br><span class="line"></span><br><span class="line">　　　　　　字段名 类型 约束,</span><br><span class="line"></span><br><span class="line">　　　　　　字段名 类型 约束</span><br><span class="line"></span><br><span class="line">　　　　);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(</span><br><span class="line"></span><br><span class="line">　　　　　　字段名 类型 约束,</span><br><span class="line"></span><br><span class="line">　　　　　　字段名 类型 约束,</span><br><span class="line"></span><br><span class="line">　　　　　　字段名 类型 约束</span><br><span class="line"></span><br><span class="line">　　　　);</span><br></pre></td></tr></table></figure>
 <h4><span id="125-show-语句">1.2.5 show  语句</span></h4>
 <p>show语句用于查看数据库中的表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">TABLES</span>;</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> 表名；	查看生成表的<span class="keyword">sql</span>语句</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SHOW TABLES;</span><br><span class="line">show create table 表名；	查看生成表的sql语句</span><br></pre></td></tr></table></figure>
 <h4><span id="126-alter-语句">1.2.6 alter 语句</span></h4>
 <p>alter语句用于修改表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">change</span> 原列名 新列名  类型； 	 <span class="comment">--修改表的列属性名</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">modify</span> 列名 类型 ；  			<span class="comment">--修改表的类类型</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">drop</span> 列名；  				 <span class="comment">--删除表的某一列</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">add</span>  列名 类型；				<span class="comment">--添加某一列</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">rename</span> 新表名； 				 <span class="comment">--修改表名</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 change 原列名 新列名  类型； 	 --修改表的列属性名</span><br><span class="line">alter table 表名 modify 列名 类型 ；  			--修改表的类类型</span><br><span class="line">alter table 表名 drop 列名；  				 --删除表的某一列</span><br><span class="line">alter table 表名 add  列名 类型；				--添加某一列</span><br><span class="line">alter table 表名 rename 新表名； 				 --修改表名</span><br></pre></td></tr></table></figure>
 <h3><span id="13-数据操纵语言dml">1.3 数据操纵语言DML</span></h3>
 <blockquote>
 <p>对象：纪录(行)            关键词：insert update delete</p>
 </blockquote>
 <h4><span id="131-insert-语句">1.3.1 insert  语句</span></h4>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名 <span class="keyword">values</span>(<span class="number">01</span>,<span class="string">'tonbby'</span>,<span class="number">99</span>); 		<span class="comment">--插入所有的字段</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名(<span class="keyword">id</span>,<span class="keyword">name</span>) <span class="keyword">values</span>(<span class="number">01</span>,<span class="string">'tonbby'</span>); 	<span class="comment">--插入指定的字段</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名 values(01,&apos;tonbby&apos;,99); 		--插入所有的字段</span><br><span class="line"></span><br><span class="line">insert into 表名(id,name) values(01,&apos;tonbby&apos;); 	--插入指定的字段</span><br></pre></td></tr></table></figure>
 <h4><span id="132-update-语句">1.3.2 update 语句</span></h4>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> 表名 <span class="keyword">set</span> 列名 = <span class="string">'值'</span>,列名 = <span class="string">'值'</span> <span class="keyword">where</span> 条件;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 列名 = &apos;值&apos;,列名 = &apos;值&apos; where 条件;</span><br></pre></td></tr></table></figure>
 <h4><span id="133-delete-语句">1.3.3 delete 语句</span></h4>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> 条件;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 where 条件;</span><br></pre></td></tr></table></figure>
 <h2><span id="2-sql-高级查询">2. SQL 高级查询</span></h2>
 
                 
