@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          [SQL] SQL语句 - 王同学的blog
+          test - 王同学的blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite-url/2018/10/20/sql-SQL语句/">
+    <link rel="canonical" href="http://yoursite-url/2018/10/22/test/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,7 +69,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('Demo.png')
+            background-image: url('null')
             /*post*/
         
     }
@@ -90,14 +90,12 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#SQL" title="SQL">SQL</a>
-                            
                         </div>
-                        <h1>[SQL] SQL语句</h1>
-                        <h2 class="subheading">SQL语句的用法</h2>
+                        <h1>test</h1>
+                        <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by 王廷骏 on
-                            2018-10-20
+                            2018-10-22
                         </span>
                     </div>
                 
@@ -214,81 +212,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2><span id="1-sql语句分类">1. SQL语句分类</span></h2>
-<blockquote>
-<p>SQL语言共分为四大类：数据查询语言DQL，数据操纵语言DML，数据定义语言DDL，数据控制语言DCL。</p>
-</blockquote>
-<h3><span id="11-数据查询语言dql">1.1 数据查询语言DQL</span></h3>
-<h4><span id="111-select-语句">1.1.1 SELECT 语句:</span></h4>
-<p>SELECT 语句用于从表中选取数据。结果被存储在一个结果表中（称为结果集）。</p>
-<blockquote>
-<p>执行顺序：from-&gt;where-&gt;group by-&gt;having-&gt;order by-&gt;select</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ... from student where 条件 group by 分组字段 having 条件 order by 排序字段</span><br></pre></td></tr></table></figure>
-<h4><span id="112-distinct-子句">1.1.2  DISTINCT 子句:</span></h4>
-<p>在表中，可能会包含重复值。这并不成问题，不过，有时您也许希望仅仅列出不同（distinct）的值。</p>
-<p>关键词 DISTINCT 用于返回唯一不同的值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT 列名称 FROM 表名称</span><br></pre></td></tr></table></figure>
-<h4><span id="113-where-子句">1.1.3 WHERE 子句</span></h4>
-<p>如需有条件地从表中选取数据，可将 WHERE 子句添加到 SELECT 语句。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名称 FROM 表名称 WHERE 列 运算符 值</span><br></pre></td></tr></table></figure>
-<h4><span id="114-and-amp-or-运算符">1.1.4 AND &amp; OR 运算符</span></h4>
-<p>AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。</p>
-<p>如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。</p>
-<p>如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名称 FROM 表名称 WHERE 列 运算符 值 AND/OR 列 运算符 值</span><br></pre></td></tr></table></figure>
-<h4><span id="115-order-by-语句">1.1.5 ORDER BY 语句</span></h4>
-<p>ORDER BY 语句用于根据指定的列对结果集进行排序。</p>
-<p>ORDER BY 语句默认按照升序对记录进行排序（ASE）。</p>
-<p>如果您希望按照降序对记录进行排序，可以使用 DESC 关键字。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名称 FROM 表名称 WHERE 列 运算符 值 ORDER BY 列名 ASE/DESC</span><br></pre></td></tr></table></figure>
-<h3><span id="12-数据定义语言ddl">1.2 数据定义语言DDL</span></h3>
-<blockquote>
-<p>关键词： create alter drop truncate(删除当前表再新建一个一模一样的表结构)</p>
-</blockquote>
-<h4><span id="121-create-语句">1.2.1 create  语句</span></h4>
-<p>CREATE语句用于创建数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database 库名;</span><br></pre></td></tr></table></figure>
-<h4><span id="122-drop-语句">1.2.2 drop 语句</span></h4>
-<p>DROP语句用于删除数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database 库名;</span><br></pre></td></tr></table></figure>
-<h4><span id="123-use-语句">1.2.3 use  语句</span></h4>
-<p>use语句用于切换数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use 库名;</span><br></pre></td></tr></table></figure>
-<h4><span id="124-create-语句">1.2.4 create  语句</span></h4>
-<p>create语句用于创建表。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(</span><br><span class="line"></span><br><span class="line">　　　　　　字段名 类型 约束,</span><br><span class="line"></span><br><span class="line">　　　　　　字段名 类型 约束,</span><br><span class="line"></span><br><span class="line">　　　　　　字段名 类型 约束</span><br><span class="line"></span><br><span class="line">　　　　);</span><br></pre></td></tr></table></figure>
-<h4><span id="125-show-语句">1.2.5 show  语句</span></h4>
-<p>show语句用于查看数据库中的表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SHOW TABLES;</span><br><span class="line">show create table 表名；	查看生成表的sql语句</span><br></pre></td></tr></table></figure>
-<h4><span id="126-alter-语句">1.2.6 alter 语句</span></h4>
-<p>alter语句用于修改表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 change 原列名 新列名  类型； 	 --修改表的列属性名</span><br><span class="line">alter table 表名 modify 列名 类型 ；  			--修改表的类类型</span><br><span class="line">alter table 表名 drop 列名；  				 --删除表的某一列</span><br><span class="line">alter table 表名 add  列名 类型；				--添加某一列</span><br><span class="line">alter table 表名 rename 新表名； 				 --修改表名</span><br></pre></td></tr></table></figure>
-<h3><span id="13-数据操纵语言dml">1.3 数据操纵语言DML</span></h3>
-<blockquote>
-<p>对象：纪录(行)            关键词：insert update delete</p>
-</blockquote>
-<h4><span id="131-insert-语句">1.3.1 insert  语句</span></h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名 values(01,&apos;tonbby&apos;,99); 		--插入所有的字段</span><br><span class="line"></span><br><span class="line">insert into 表名(id,name) values(01,&apos;tonbby&apos;); 	--插入指定的字段</span><br></pre></td></tr></table></figure>
-<h4><span id="132-update-语句">1.3.2 update 语句</span></h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 列名 = &apos;值&apos;,列名 = &apos;值&apos; where 条件;</span><br></pre></td></tr></table></figure>
-<h4><span id="133-delete-语句">1.3.3 delete 语句</span></h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 where 条件;</span><br></pre></td></tr></table></figure>
-<h2><span id="2-sql-高级查询">2. SQL 高级查询</span></h2>
-
+                
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/10/22/test/" data-toggle="tooltip" data-placement="top" title="test">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/03/18/hexo-theme-beantech/" data-toggle="tooltip" data-placement="top" title="[Hexo] Theme BeanTech">Next Post &rarr;</a>
+                            <a href="/2018/10/20/sql-SQL语句/" data-toggle="tooltip" data-placement="top" title="[SQL] SQL语句">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -318,7 +251,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1. SQL语句分类</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">1.1 数据查询语言DQL</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">1.1.1 SELECT 语句:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">1.1.2  DISTINCT 子句:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">1.1.3 WHERE 子句</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.4.</span> <span class="toc-nav-text">1.1.4 AND &amp; OR 运算符</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.5.</span> <span class="toc-nav-text">1.1.5 ORDER BY 语句</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">1.2 数据定义语言DDL</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">1.2.1 create  语句</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">1.2.2 drop 语句</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">1.2.3 use  语句</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.4.</span> <span class="toc-nav-text">1.2.4 create  语句</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.5.</span> <span class="toc-nav-text">1.2.5 show  语句</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.6.</span> <span class="toc-nav-text">1.2.6 alter 语句</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">1.3 数据操纵语言DML</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">1.3.1 insert  语句</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">1.3.2 update 语句</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">1.3.3 delete 语句</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. SQL 高级查询</span></a></li></ol>
+          <ol class="nav">none</ol>
         
         </div>
       </aside>
@@ -338,8 +271,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#SQL" title="SQL">SQL</a>
-                        
                     </div>
                 </section>
                 
@@ -358,8 +289,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "http://yoursite-url/2018/10/20/sql-SQL语句/";
-    var disqus_url = "http://yoursite-url/2018/10/20/sql-SQL语句/";
+    var disqus_identifier = "http://yoursite-url/2018/10/22/test/";
+    var disqus_url = "http://yoursite-url/2018/10/22/test/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
