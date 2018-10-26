@@ -136,13 +136,6 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -151,6 +144,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -210,6 +210,187 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/">
+        <h2 class="post-title">
+            SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错
+        </h2>
+        <h3 class="post-subtitle">
+            SpringCloud构建为服务架构：（Hystrix）服务容错
+        </h3>
+        <div class="post-content-preview">
+            1. Hystrix服务降级
+1.1 引言
+在微服务架构中，我们将系统拆分成了一个个的服务单元，各单元应用间通过服务注册与订阅的方式互相依赖。由于每个单元都在不同的进程中运行，依赖通过远程调用的方式执行，这样就有可能因为网络原因或是依赖服务自身问题出现调用故障或延迟，而这些问题会直接导致调用方的对外服务也出现延迟，若此时调用方的请求不断增加，最后就会出现因等待出现故障的依赖方响应而形成任务积......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 王廷骏 on
+            2018-10-25
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#SpringCloud" title="SpringCloud">SpringCloud</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/10/24/SpringCloud-3.SpringCloud构建微服务架构：分布式配置中心/">
+        <h2 class="post-title">
+            SpringCloud-3.SpringCloud构建微服务架构：分布式配置中心
+        </h2>
+        <h3 class="post-subtitle">
+            Spring Cloud构建微服务架构：分布式配置中心
+        </h3>
+        <div class="post-content-preview">
+            1. 分布式配置中心
+Spring Cloud Config是Spring Cloud团队创建的一个全新项目，用来为分布式系统中的基础设施和微服务应用提供集中化的外部配置支持，它分为服务端与客户端两个部分。其中服务端也称为分布式配置中心，它是一个独立的微服务应用，用来连接配置仓库并为客户端提供获取配置信息、加密/解密信息等访问接口；而客户端则是微服务架构中的各个微服务应用或基础设施，它们通过......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 王廷骏 on
+            2018-10-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#SpringCloud" title="SpringCloud">SpringCloud</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/10/24/SpringCloud-6-SpringCloud构建微服务架构：分布式配置中心/">
+        <h2 class="post-title">
+            SpringCloud-6-SpringCloud构建微服务架构：分布式配置中心
+        </h2>
+        <h3 class="post-subtitle">
+            Spring Cloud构建微服务架构：分布式配置中心
+        </h3>
+        <div class="post-content-preview">
+            1. 分布式配置中心
+Spring Cloud Config是Spring Cloud团队创建的一个全新项目，用来为分布式系统中的基础设施和微服务应用提供集中化的外部配置支持，它分为服务端与客户端两个部分。其中服务端也称为分布式配置中心，它是一个独立的微服务应用，用来连接配置仓库并为客户端提供获取配置信息、加密/解密信息等访问接口；而客户端则是微服务架构中的各个微服务应用或基础设施，它们通过......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 王廷骏 on
+            2018-10-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#SpringCloud" title="SpringCloud">SpringCloud</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/10/24/SpringCloud-5-SpringCloud构建微服务架构：服务网关/">
+        <h2 class="post-title">
+            SpringCloud-5-SpringCloud构建微服务架构：服务网关
+        </h2>
+        <h3 class="post-subtitle">
+            Spring Cloud构建微服务架构：服务网关
+        </h3>
+        <div class="post-content-preview">
+            1. 基础
+通过之前几篇Spring Cloud中几个核心组件的介绍，我们已经可以构建一个简略的（不够完善）微服务架构了。比如下图所示：
+
+我们使用Spring Cloud Netflix中的Eureka实现了服务注册中心以及服务注册与发现；而服务间通过Ribbon或Feign实现服务的消费以及均衡负载；通过Spring Cloud Config实现了应用多环境的外部化配置以及版本管理。为了......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 王廷骏 on
+            2018-10-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#SpringCloud" title="SpringCloud">SpringCloud</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/10/23/SpringCloud-2.SpringCloud构建微服务架构：服务消费/">
+        <h2 class="post-title">
+            SpringCloud-2.SpringCloud构建微服务架构：服务消费
+        </h2>
+        <h3 class="post-subtitle">
+            Spring Cloud构建微服务架构：服务消费
+        </h3>
+        <div class="post-content-preview">
+            
+通过上一篇,我们已经成功地将服务提供者：eureka-client或consul-client注册到了Eureka服务注册中心或Consul服务端上了，同时我们也通过DiscoveryClient接口的getServices获取了当前客户端缓存的所有服务清单，那么接下来我们要学习的就是：如何去消费服务提供者的接口？
+
+1. 服务消费（基础）
+1.1 使用LoadBalancerClient......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 王廷骏 on
+            2018-10-23
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#SpringCloud" title="SpringCloud">SpringCloud</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/10/23/SpringCloud-1.SpringCloud构建微服务架构：服务注册与发现/">
+        <h2 class="post-title">
+            SpringCloud-1.SpringCloud构建微服务架构：服务注册与发现
+        </h2>
+        <h3 class="post-subtitle">
+            SpringCloud构建微服务架构：服务注册与发现
+        </h3>
+        <div class="post-content-preview">
+            1.Spring Cloud简介
+Spring Cloud是一个基于Spring Boot实现的云应用开发工具，它为基于JVM的云应用开发中涉及的配置管理、服务发现、断路器、智能路由、微代理、控制总线、全局锁、决策竞选、分布式会话和集群状态管理等操作提供了一种简单的开发方式。
+Spring Cloud包含了多个子项目（针对分布式系统中涉及的多个不同开源产品），比如：Spring Cloud ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 王廷骏 on
+            2018-10-23
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#SpringCloud" title="SpringCloud">SpringCloud</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -318,6 +499,10 @@ I publish the whole project f......
     <div class="tags">
         
             
+            <a href="/tags/#SpringCloud" title="SpringCloud" rel="6">SpringCloud</a>
+            
+        
+            
         
             
         
@@ -366,11 +551,23 @@ I publish the whole project f......
     <ul>
       
         <li>
-          <a href="/2018/10/20/sql-SQL语句/">[SQL] SQL语句</a>
+          <a href="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/">SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错</a>
         </li>
       
         <li>
-          <a href="/2017/03/18/hexo-theme-beantech/">[Hexo] Theme BeanTech</a>
+          <a href="/2018/10/24/SpringCloud-3.SpringCloud构建微服务架构：分布式配置中心/">SpringCloud-3.SpringCloud构建微服务架构：分布式配置中心</a>
+        </li>
+      
+        <li>
+          <a href="/2018/10/24/SpringCloud-6-SpringCloud构建微服务架构：分布式配置中心/">SpringCloud-6-SpringCloud构建微服务架构：分布式配置中心</a>
+        </li>
+      
+        <li>
+          <a href="/2018/10/24/SpringCloud-5-SpringCloud构建微服务架构：服务网关/">SpringCloud-5-SpringCloud构建微服务架构：服务网关</a>
+        </li>
+      
+        <li>
+          <a href="/2018/10/23/SpringCloud-2.SpringCloud构建微服务架构：服务消费/">SpringCloud-2.SpringCloud构建微服务架构：服务消费</a>
         </li>
       
     </ul>
