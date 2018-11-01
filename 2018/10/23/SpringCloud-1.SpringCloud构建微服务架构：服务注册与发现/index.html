@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -232,7 +232,7 @@
 <p>在默认设置下，该服务注册中心也会将自己作为客户端来尝试注册它自己，所以我们需要禁用它的客户端注册行为，只需要在<code>application.properties</code>配置文件中增加如下信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=eureka-server</span><br><span class="line">server.port=1001</span><br><span class="line"></span><br><span class="line">eureka.instance.hostname=localhost</span><br><span class="line">eureka.client.register-with-eureka=false</span><br><span class="line">eureka.client.fetch-registry=false</span><br></pre></td></tr></table></figure>
 <p>为了与后续要进行注册的服务区分，这里将服务注册中心的端口通过server.port属性设置为1001。启动工程后，访问：<a href="http://localhost:1001/" target="_blank" rel="noopener">http://localhost:1001/</a>，可以看到下面的页面，其中还没有发现任何服务。</p>
-<p><img src="/2018/10/23/SpringCloud-1.SpringCloud构建微服务架构：服务注册与发现/E:%5Chexo-wtj%5Csource_posts%5Cspring-cloud-IDEA%E6%90%AD%E5%BB%BAspringcloud%E9%A1%B9%E7%9B%AE%5Ceureka%E5%90%AF%E5%8A%A8.jpg" alt="eureka启动"></p>
+<p><img src="/2018/10/23/SpringCloud-1.SpringCloud构建微服务架构：服务注册与发现/eureka%E5%90%AF%E5%8A%A8.jpg" alt="eureka启动"></p>
 <h4><span id="32-创建服务提供方">3.2 创建“服务提供方”</span></h4>
 <p>下面我们创建提供服务的客户端，并向服务注册中心注册自己。</p>
 <p>首先，创建一个基本的Spring Boot应用。命名为<code>eureka-client</code>，在<code>pom.xml</code>中，加入如下配置：</p>
@@ -245,9 +245,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=eureka-client</span><br><span class="line">server.port=2001</span><br><span class="line">eureka.client.serviceUrl.defaultZone=http://localhost:1001/eureka/</span><br></pre></td></tr></table></figure>
 <p>通过<code>spring.application.name</code>属性，我们可以指定微服务的名称后续在调用的时候只需要使用该名称就可以进行服务的访问。<code>eureka.client.serviceUrl.defaultZone</code>属性对应服务注册中心的配置内容，指定服务注册中心的位置。为了在本机上测试区分服务提供方和服务注册中心，使用<code>server.port</code>属性设置不同的端口。</p>
 <p>启动该工程后，再次访问:<a href="http://localhost:1001" target="_blank" rel="noopener">http://localhost:1001</a>。如下图，就注册成功了。</p>
-<p><img src="/2018/10/23/SpringCloud-1.SpringCloud构建微服务架构：服务注册与发现/E:%5Chexo-wtj%5Csource_posts%5Cspring-cloud-IDEA%E6%90%AD%E5%BB%BAspringcloud%E9%A1%B9%E7%9B%AE%5C%E6%B3%A8%E5%86%8C%E6%88%90%E5%8A%9F.jpg" alt="注册成功"></p>
+<p><img src="/2018/10/23/SpringCloud-1.SpringCloud构建微服务架构：服务注册与发现/%E6%B3%A8%E5%86%8C%E6%88%90%E5%8A%9F.jpg" alt="注册成功"></p>
 <p>我们也可以通过直接访问<code>eureka-client</code>服务提供的<code>/dc</code>接口来获取当前的服务清单，只需要访问：<a href="http://localhost:2001/dc%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%BE%97%E5%88%B0%E4%B8%80%E4%B8%8B%E8%BE%93%E5%87%BA%EF%BC%9A" target="_blank" rel="noopener">http://localhost:2001/dc，可以得到一下输出：</a></p>
-<p><img src="/2018/10/23/SpringCloud-1.SpringCloud构建微服务架构：服务注册与发现/E:%5Chexo-wtj%5Csource_posts%5Cspring-cloud-IDEA%E6%90%AD%E5%BB%BAspringcloud%E9%A1%B9%E7%9B%AE%5Cdc.jpg" alt="dc"></p>
+<p><img src="/2018/10/23/SpringCloud-1.SpringCloud构建微服务架构：服务注册与发现/dc.jpg" alt="dc"></p>
 <p>其中，方括号中的<code>eureka-client</code>就是通过Spring Cloud定义的<code>DiscoveryClient</code>接口在eureka的实现中获取到的所有服务清单。</p>
 <p>文章整理摘自<a href="http://blog.didispace.com/Spring-Cloud%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" target="_blank" rel="noopener">翟永超的spring cloud教程</a></p>
 

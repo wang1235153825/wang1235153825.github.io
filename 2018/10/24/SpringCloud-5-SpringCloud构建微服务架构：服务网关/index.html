@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -216,7 +216,7 @@
 
                 <h3><span id="1-基础">1. 基础</span></h3>
 <p>通过之前几篇Spring Cloud中几个核心组件的介绍，我们已经可以构建一个简略的（不够完善）微服务架构了。比如下图所示：</p>
-<p><img src="/2018/10/24/SpringCloud-5-SpringCloud构建微服务架构：服务网关/E:%5Chexo-wtj%5Csource_posts%5CSpring-Cloud-14-Spring-Cloud%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3-----.png" alt=""></p>
+<p><img src="/2018/10/24/SpringCloud-5-SpringCloud构建微服务架构：服务网关/-----.png" alt=""></p>
 <p>我们使用Spring Cloud Netflix中的Eureka实现了服务注册中心以及服务注册与发现；而服务间通过Ribbon或Feign实现服务的消费以及均衡负载；通过Spring Cloud Config实现了应用多环境的外部化配置以及版本管理。为了使得服务集群更为健壮，使用Hystrix的融断机制来避免在微服务架构中个别服务出现异常时引起的故障蔓延。</p>
 <p>在该架构中，我们的服务集群包含：内部服务Service A和Service B，他们都会注册与订阅服务至Eureka Server，而Open Service是一个对外的服务，通过均衡负载公开至服务调用方。本文我们把焦点聚集在对外服务这块，这样的实现是否合理，或者是否有更好的实现方式呢？</p>
 <p>先来说说这样架构需要做的一些事儿以及存在的不足：</p>
@@ -270,7 +270,7 @@
 <ul>
 <li>比如访问：<a href="http://localhost:1101/eureka-consumer/consumer" target="_blank" rel="noopener">http://localhost:1101/eureka-consumer/consumer</a> ，该请求将最终被路由到<code>eureka-consumer</code>的/consumer接口上。</li>
 </ul>
-<p><img src="/2018/10/24/SpringCloud-5-SpringCloud构建微服务架构：服务网关/E:%5Chexo-wtj%5Csource_posts%5CSpring-Cloud-14-Spring-Cloud%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3%5C%E9%A1%B5%E9%9D%A2.jpg" alt=""></p>
+<p><img src="/2018/10/24/SpringCloud-5-SpringCloud构建微服务架构：服务网关/%E9%A1%B5%E9%9D%A2.jpg" alt=""></p>
 <h3><span id="2-服务网关路由配置">2. 服务网关（路由配置）</span></h3>
 <h4><span id="21-传统路由配置">2.1 传统路由配置</span></h4>
 <p>所谓的传统路由配置方式就是在不依赖于服务发现机制的情况下，通过在配置文件中具体指定每个路由表达式与服务实例的映射关系来实现API网关对外部请求的路由。</p>

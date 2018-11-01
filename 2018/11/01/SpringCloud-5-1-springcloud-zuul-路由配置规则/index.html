@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          王同学的blog
+          SpringCloud-5.1-springcloud zuul 路由配置规则 - 王同学的blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite-url/archives/">
+    <link rel="canonical" href="http://yoursite-url/2018/11/01/SpringCloud-5-1-springcloud-zuul-路由配置规则/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,8 +69,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/undefined')
-            /*page*/
+            background-image: url('null')
+            /*post*/
         
     }
     
@@ -87,10 +87,16 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>My Blog</h1>
-                        <!--<hr class="small">-->
-                        <span class="subheading">山高水长</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>SpringCloud-5.1-springcloud zuul 路由配置规则</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 王廷骏 on
+                            2018-11-01
+                        </span>
                     </div>
                 
 
@@ -193,272 +199,205 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 归档列表 -->
-            
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-             <!-- 归档列表 -->
+                <p>zuul路由的几个配置参数</p>
+<p>1.静态路由</p>
+<p>zuul:</p>
+<p>routes:</p>
+<p>myroute1:</p>
+<p>path: /mypath/**</p>
+<p>url: <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>	(注意这里url要http://开头)</p>
+<p>2.静态路由+ribbon负载均衡/故障切换</p>
+<p>zuul:</p>
+<p>routes:</p>
+<p>myroutes1:</p>
+<p>path: /mypath/**</p>
+<p>serviceId: myserverId</p>
+<p>myserverId:</p>
+<p>ribbon:</p>
+<p>listOfServers: localhost:8080, localhost:8081</p>
+<p>ribbon:</p>
+<p>eureka:</p>
+<p>enabled: false</p>
+<p>3.动态路由+ribbon负载均衡/故障切换</p>
+<p>zuul:</p>
+<p>routes:</p>
+<p>myroutes1:</p>
+<p>path: /mypath/**</p>
+<p>serviceId: myserviceId</p>
+<p>eureka:</p>
+<p>client:</p>
+<p>serviceUrl:</p>
+<p>defaultZne:xxx</p>
+<p>4.路由匹配的一些配置</p>
+<p>stripPrefix=true，转发会过滤掉前缀。</p>
+<p>path: /myusers/<strong>，默认时转发到服务的请求是/</strong>，如果stripPrefix=false，转发的请求是/myusers/**</p>
+<p>zuul.prefix=/api	会对所有的path增加一个/api前缀</p>
+<p>ignoredPatterns: /<strong>/admin/</strong>	过滤掉匹配的url</p>
+<p>route:</p>
+<p>users: /myusers/**	会匹配所有/myusers/<strong>的url，但由于ignoredPatterns, /myusers/</strong>/admin/**的请求不会被转发，而是直接由zuul里的接口接收</p>
+<p>匹配顺序</p>
+<p>path:/myusers/**</p>
+<p>path:/**	如果是在application.yml中配置的，那么会优先匹配/myusers/**</p>
+<p>但如果是applicaiton.properties配置的，那么可能导致/myusers/**被/**覆盖</p>
+<p>ignored-Services: ‘*‘	对于自动发现的services,除了route中明确指定的，其他都会被忽略</p>
+<p>5.请求头过滤</p>
+<p>route.sensitiveHeaders: Cookie,Set-Cookie,Authorization</p>
+<p>默认就有这三个请求头，意思是不向下游转发请求这几个头</p>
+<p>zuul.ignoredHeaders 是一个全局设置，而route.sensitiveHeaders是局部设置</p>
+<p>zuul过滤器</p>
+<p>标准的zuul过滤器有4中，分别对应一次路由转发的几个关键点;</p>
+<p>pre: 在路由转发之前起作用</p>
+<p>routing: 在路由时其作用</p>
+<p>post: 在把结果返回给浏览器时起作用</p>
+<p>error: 在整个路由阶段，出现异常时起作用</p>
+<p>如果要分析前端传来的参数，验证前端身份等对前端参数的操作，显然是用pre过滤器<br>
+如果是要对返回给前端的结果进行操作或者分析，显然是用post过滤器</p>
+<p>编写自定义路由器</p>
+<p>public class MyFilter extends ZuulFilter{<br>
+filterType()	重写，返回这个过滤器的类型<br>
+filterOrder()	重写，返回这个过滤器在过滤器链的顺序<br>
+shouldFilter() true启动<br>
+run()	具体逻辑<br>
+}</p>
+<p>原文地址：<a href="http://www.bubuko.com/infodetail-2012976.html" target="_blank" rel="noopener">http://www.bubuko.com/infodetail-2012976.html</a></p>
 
-            
-            <div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2018">
-                    <span class="tag-text">2018</span>
-                </span>
-                <ul>
                 
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    11-01
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2018/11/01/SpringCloud-5-1-springcloud-zuul-路由配置规则/" style="color: #0085a1">
-                        <span>
-                            SpringCloud-5.1-springcloud zuul 路由配置规则
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    10-31
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2018/10/31/JWT-JWT入门/" style="color: #0085a1">
-                        <span>
-                            JWT-JWT入门
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    10-25
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/" style="color: #0085a1">
-                        <span>
-                            SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    10-24
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2018/10/24/SpringCloud-3.SpringCloud构建微服务架构：分布式配置中心/" style="color: #0085a1">
-                        <span>
-                            SpringCloud-3.SpringCloud构建微服务架构：分布式配置中心
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    10-24
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2018/10/24/SpringCloud-5-SpringCloud构建微服务架构：服务网关/" style="color: #0085a1">
-                        <span>
-                            SpringCloud-5-SpringCloud构建微服务架构：服务网关
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    10-23
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2018/10/23/SpringCloud-2.SpringCloud构建微服务架构：服务消费/" style="color: #0085a1">
-                        <span>
-                            SpringCloud-2.SpringCloud构建微服务架构：服务消费
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    10-23
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2018/10/23/SpringCloud-1.SpringCloud构建微服务架构：服务注册与发现/" style="color: #0085a1">
-                        <span>
-                            SpringCloud-1.SpringCloud构建微服务架构：服务注册与发现
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li>
-                    10-20
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2018/10/20/sql-SQL语句/" style="color: #0085a1">
-                        <span>
-                            [SQL] SQL语句
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/10/31/JWT-JWT入门/" data-toggle="tooltip" data-placement="top" title="JWT-JWT入门">Next Post &rarr;</a>
+                        </li>
+                    
                 </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
             </div>
             
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="nav">none</ol>
+        
+        </div>
+      </aside>
+    
 
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
         </div>
     </div>
-</div>
+</article>
 
-                <!-- 如果开启评论功能 -->
-                
-            </div>
 
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
 
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-            <a href="/tags/#SpringCloud" title="SpringCloud" rel="5">SpringCloud</a>
-            
-        
-            
-        
-            
-        
-    </div>
-</section>
 
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://yoursite-url/2018/11/01/SpringCloud-5-1-springcloud-zuul-路由配置规则/";
+    var disqus_url = "http://yoursite-url/2018/11/01/SpringCloud-5-1-springcloud-zuul-路由配置规则/";
 
-        
-            <img id="avatar_pic" src="/img/037c4da6f7a8d8d8acc3aa54c18351ab.jpeg">
-        
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
 
-        
-            <p>科技推动人生</p>
-        
 
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
 
-            
 
-            
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-            
-            
-            
-            
-        </ul>
-    </div>
-</section>
-        <hr>
-    
-        
-  <h5>RECENT POSTS
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/2018/11/01/SpringCloud-5-1-springcloud-zuul-路由配置规则/">SpringCloud-5.1-springcloud zuul 路由配置规则</a>
-        </li>
-      
-        <li>
-          <a href="/2018/10/31/JWT-JWT入门/">JWT-JWT入门</a>
-        </li>
-      
-        <li>
-          <a href="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/">SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错</a>
-        </li>
-      
-        <li>
-          <a href="/2018/10/24/SpringCloud-3.SpringCloud构建微服务架构：分布式配置中心/">SpringCloud-3.SpringCloud构建微服务架构：分布式配置中心</a>
-        </li>
-      
-        <li>
-          <a href="/2018/10/24/SpringCloud-5-SpringCloud构建微服务架构：服务网关/">SpringCloud-5-SpringCloud构建微服务架构：服务网关</a>
-        </li>
-      
-    </ul>
-  </div>
-</h5>
-        <hr>
-    
-        <!-- Friends Blog -->
-
-        <hr>
-    
-</div>
-
-        
-    </div>
-</div>
 
 
     <!-- Footer -->
