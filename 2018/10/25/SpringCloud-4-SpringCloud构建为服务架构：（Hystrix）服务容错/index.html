@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -261,7 +261,7 @@
 <p>总之，通过对依赖服务实现线程池隔离，让我们的应用更加健壮，不会因为个别依赖服务出现问题而引起非相关服务的异常。同时，也使得我们的应用变得更加灵活，可以在不停止服务的情况下，配合动态配置刷新实现性能配置上的调整。</p>
 <p>虽然线程池隔离的方案带了如此多的好处，但是很多使用者可能会担心为每一个依赖服务都分配一个线程池是否会过多地增加系统的负载和开销。对于这一点，使用者不用过于担心，因为这些顾虑也是大部分工程师们会考虑到的，Netflix在设计Hystrix的时候，认为线程池上的开销相对于隔离所带来的好处是无法比拟的。同时，Netflix也针对线程池的开销做了相关的测试，以证明和打消Hystrix实现对性能影响的顾虑。</p>
 <p>下图是Netflix Hystrix官方提供的一个Hystrix命令的性能监控，该命令以每秒60个请求的速度（QPS）向一个单服务实例进行访问，该服务实例每秒运行的线程数峰值为350个。</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5C%E8%80%97%E6%97%B6.jpg" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5C%E8%80%97%E6%97%B6.jpg" alt=""></p>
 <p>从图中的统计我们可以看到，使用线程池隔离与不使用线程池隔离的耗时差异如下表所示：</p>
 <table>
 <thead>
@@ -353,7 +353,7 @@
 </li>
 </ul>
 <p>到这里我们已经完成了基本配置，接下来我们可以启动该应用，并访问：<code>http://localhost:1301/hystrix</code>，我们可以看到如下页面：</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Chystrix.jpg" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Chystrix.jpg" alt=""></p>
 <p>这是Hystrix Dashboard的监控首页，该页面中并没有具体的监控信息。从页面的文字内容中我们可以知道，Hystrix Dashboard共支持三种不同的监控方式，依次为：</p>
 <ul>
 <li>
@@ -375,13 +375,13 @@
 </li>
 <li>
 <p>确保在服务实例的主类中已经使用<code>@EnableCircuitBreaker</code>或<code>@EnableHystrix</code>注解，开启了断路器功能。在启动服务时，我们可以看到一下输出：</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5C1540537713(1).jpg" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5C1540537713(1).jpg" alt=""></p>
 <p>这个信息表明我们的consumer工程目前已经具备了/hystrix.stream接口，我们可以直接访问这个接口了。<strong>但是这里有一个细节需要注意：要访问/hystrix.stream接口，得先访问consumer工程中的任意一个其他接口，否则如果直接访问/hystrix.stream接口的话，会打印出一连串的ping: ping: …。</strong> OK，我先访问consumer中的任意一个其他接口，然后在访问/hystrix.stream接口，访问地址如下：<a href="http://localhost:9000/hystrix.stream" target="_blank" rel="noopener">http://localhost:2101/hystrix.stream</a>，访问结果如下：</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5C1540537879(1).jpg" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5C1540537879(1).jpg" alt=""></p>
 <p>我们看到返回结果是一段json数据，单纯的查看json数据，我们很难分析出结果，所以，我们要在Hystrix仪表盘中来查看这一段json，在hystrix仪表盘中输入监控地址，如下：</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5C1540537922(1).jpg" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5C1540537922(1).jpg" alt=""></p>
 <p>然后点击Monitor Stream按钮，我们就可以看到监控画面了，如下：</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5C1540538077(1).jpg" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5C1540538077(1).jpg" alt=""></p>
 </li>
 </ul>
 <p>在对该页面介绍前，我们先看看在首页中我们还没有介绍的两外两个参数：</p>
@@ -399,7 +399,7 @@
 </li>
 <li>
 <p>曲线：用来记录2分钟内流量的相对变化，我们可以通过它来观察到流量的上升和下降趋势。</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Cspring-cloud-starter-dalston-5-1-3.png" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Cspring-cloud-starter-dalston-5-1-3.png" alt=""></p>
 </li>
 </ul>
 </li>
@@ -407,12 +407,12 @@
 <p>其他一些数量指标如下图所示：</p>
 </li>
 </ul>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Cspring-cloud-starter-dalston-5-1-4.png" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Cspring-cloud-starter-dalston-5-1-4.png" alt=""></p>
 <h3><span id="5-hystrix监控数据聚合">5. Hystrix监控数据聚合</span></h3>
 <p>上面我们介绍了使用Hystrix Dashboard来展示Hystrix用于熔断的各项度量指标。通过Hystrix Dashboard，我们可以方便的查看服务实例的综合情况，比如：服务调用次数、服务调用延迟等。但是仅通过Hystrix Dashboard我们只能实现对服务当个实例的数据展现，在生产环境我们的服务是肯定需要做高可用的，那么对于多实例的情况，我们就需要将这些度量指标数据进行聚合。下面，在本篇中，我们就来介绍一下另外一个工具：Turbine。</p>
 <h4><span id="51-准备工作">5.1 准备工作</span></h4>
 <p>在开始使用Turbine之前，我们先回顾一下上一篇中实现的架构，如下图所示：</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Cspring-cloud-starter-dalston-5-2-1.png" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Cspring-cloud-starter-dalston-5-2-1.png" alt=""></p>
 <p>其中，我们构建的内容包括：</p>
 <ul>
 <li>eureka-server：服务注册中心</li>
@@ -448,10 +448,10 @@
 </ul>
 <p>在完成了上面的内容构建之后，我们来体验一下Turbine对集群的监控能力。分别启动<code>eureka-server</code>、<code>eureka-client</code>、<code>eureka-consumer-ribbon-hystrix</code>、<code>turbine</code>以及<code>hystrix-dashboard。访问Hystrix Dashboard，并开启对</code><a href="http://localhost:8989/turbine.stream%60%E7%9A%84%E7%9B%91%E6%8E%A7%EF%BC%8C%E8%BF%99%E6%97%B6%E5%80%99%EF%BC%8C%E6%88%91%E4%BB%AC%E5%B0%86%E7%9C%8B%E5%88%B0%E9%92%88%E5%AF%B9%E6%9C%8D%E5%8A%A1%60eureka-consumer-ribbon-hystrix%60%E7%9A%84%E8%81%9A%E5%90%88%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E3%80%82" target="_blank" rel="noopener">http://localhost:8989/turbine.stream</a>的监控，可以看到针对服务eureka-consumer-ribbon-hystrix的聚合监控数据。</p>
 <p>而此时的架构如下图所示：</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Cspring-cloud-starter-dalston-5-2-2.png" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Cspring-cloud-starter-dalston-5-2-2.png" alt=""></p>
 <h4><span id="54-通过消息代理收集聚合">5.4 通过消息代理收集聚合</span></h4>
 <p>Spring Cloud在封装Turbine的时候，还实现了基于消息代理的收集实现。所以，我们可以将所有需要收集的监控信息都输出到消息代理中，然后Turbine服务再从消息代理中异步的获取这些监控信息，最后将这些监控信息聚合并输出到Hystrix Dashboard中。通过引入消息代理，我们的Turbine和Hystrix Dashoard实现的监控架构可以改成如下图所示的结构：</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Cspring-cloud-starter-dalston-5-2-3.png" alt=""></p>
+<p><img src="/2018/10/25/SpringCloud-4-SpringCloud构建为服务架构：（Hystrix）服务容错/E:%5Chexo-wtj%5Csource_posts%5CSpringCloud-4-SpringCloud%E6%9E%84%E5%BB%BA%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A(Hystrix)%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99%5Cspring-cloud-starter-dalston-5-2-3.png" alt=""></p>
 <p>从图中我们可以看到，这里多了一个重要元素：RabbitMQ。对于RabbitMQ的安装与基本时候我们可以查看之前的<a href="http://blog.didispace.com/spring-boot-rabbitmq/" target="_blank" rel="noopener">《Spring Boot中使用RabbitMQ》</a>一文，这里不做过多的说明。下面，我们可以来构建一个新的应用来实现基于消息代理的Turbine聚合服务，具体步骤如下：</p>
 <ul>
 <li>

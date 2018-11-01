@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -242,7 +242,7 @@
 </ul>
 <p>可以看到这里，我们注入了<code>LoadBalancerClient</code>和<code>RestTemplate</code>，并在<code>/consumer</code>接口的实现中，先通过<code>loadBalancerClient</code>的<code>choose</code>函数来负载均衡的选出一个<code>eureka-client</code>的服务实例，这个服务实例的基本信息存储在<code>ServiceInstance</code>中，然后通过这些对象中的信息拼接出访问<code>/dc</code>接口的详细地址，最后再利用<code>RestTemplate</code>对象实现对服务提供者接口的调用。</p>
 <p>在完成了上面你的代码编写之后，读者可以将eureka-server、eureka-client、eureka-consumer都启动起来，然后访问<a href="http://localhost:2101/consumer" target="_blank" rel="noopener">http://localhost:2101/consumer</a> ，来跟踪观察eureka-consumer服务是如何消费eureka-client服务的<code>/dc</code>接口的。</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5Cspringcloud-Spring-Cloud%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%B4%B9%5C%E7%BD%91%E9%A1%B5%E8%BE%93%E5%87%BA.jpg" alt="网页输出"></p>
+<p><img src="/2018/10/23/SpringCloud-2.SpringCloud构建微服务架构：服务消费/E:%5Chexo-wtj%5Csource_posts%5Cspringcloud-Spring-Cloud%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%9A%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%B4%B9%5C%E7%BD%91%E9%A1%B5%E8%BE%93%E5%87%BA.jpg" alt="网页输出"></p>
 <h3><span id="2-服务消费ribbon">2. 服务消费（Ribbon）</span></h3>
 <blockquote>
 <p>通过上面的学习，我们已经学会如何通过<code>LoadBalancerClient</code>接口来获取某个服务的具体实例，并根据实例信息来发起服务接口消费请求。但是这样的做法需要我们手工的去编写服务选取、链接拼接等繁琐的工作，对于开发人员来说非常的不友好。所以，下来我们看看Spring Cloud中针对客户端负载均衡的工具包：Spring Cloud Ribbon。</p>

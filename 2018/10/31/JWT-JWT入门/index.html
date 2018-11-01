@@ -144,14 +144,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -254,7 +254,7 @@
 <p>服务器就不保存任何 session 数据了，也就是说，服务器变成无状态了，从而比较容易实现扩展。</p>
 <h4><span id="14-jwt-的数据结构">1.4 <strong>JWT 的数据结构</strong></span></h4>
 <p>实际的 JWT 大概就像下面这样。</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CJWT-JWT%E5%85%A5%E9%97%A8%5C201873091810446.jpg" alt="">它是一个很长的字符串，中间用点（<code>.</code>）分隔成三个部分。注意，JWT 内部是没有换行的，这里只是为了便于展示，将它写成了几行。</p>
+<p><img src="/2018/10/31/JWT-JWT入门/E:%5Chexo-wtj%5Csource_posts%5CJWT-JWT%E5%85%A5%E9%97%A8%5C201873091810446.jpg" alt="">它是一个很长的字符串，中间用点（<code>.</code>）分隔成三个部分。注意，JWT 内部是没有换行的，这里只是为了便于展示，将它写成了几行。</p>
 <p>JWT 的三个部分依次如下。</p>
 <ul>
 <li>Header（头部）</li>
@@ -262,7 +262,7 @@
 <li>Signature（签名）</li>
 </ul>
 <p>写成一行，就是下面的样子。</p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CJWT-JWT%E5%85%A5%E9%97%A8%5C201873091900156.jpg" alt=""></p>
+<p><img src="/2018/10/31/JWT-JWT入门/E:%5Chexo-wtj%5Csource_posts%5CJWT-JWT%E5%85%A5%E9%97%A8%5C201873091900156.jpg" alt=""></p>
 <h5><span id="141-header">1.4.1 Header</span></h5>
 <p>Header 部分是一个 JSON 对象，描述 JWT 的元数据，通常是下面的样子。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;alg&quot;: &quot;HS256&quot;,</span><br><span class="line"> &quot;typ&quot;: &quot;JWT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -339,7 +339,7 @@
 <p>最后可以在控制台看到打印出来的信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jwt = eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDA5NzgxMzAsIm5hbWUiOiJ3YW5ndGluZ2p1biIsImFnZSI6IjE4Iiwia2V5IjoidmF1bGUifQ.XEDlK0UNTV3aKANQe9QCE2Y7JiP7D7ebrDVOs2JxRCQ</span><br><span class="line">&#123;exp=1540978130, name=wangtingjun, age=18, key=vaule&#125;</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
 <p>我们还可以使用jwt的解析工具进行解析看一下，<a href="https://jwt.io/" target="_blank" rel="noopener">jwt解析</a></p>
-<p><img src="E:%5Chexo-wtj%5Csource_posts%5CJWT-JWT%E5%85%A5%E9%97%A8%5C1540976543(1).png" alt=""></p>
+<p><img src="/2018/10/31/JWT-JWT入门/E:%5Chexo-wtj%5Csource_posts%5CJWT-JWT%E5%85%A5%E9%97%A8%5C1540976543(1).png" alt=""></p>
 
                 
 
